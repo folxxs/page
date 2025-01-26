@@ -1,4 +1,3 @@
-<html><head><meta name="color-scheme" content="light dark"></head><body><pre style="word-wrap: break-word; white-space: pre-wrap;">
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/vKhonshu/intro2/main/ui2"))() 
 local NotifyLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/vKhonshu/intro/main/ui"))()
 
@@ -16,4 +15,3 @@ else
     NotifyLib.prompt('Executor Not Supported', executorname .. " is not supported, expect errors.", 5)
     loadstring(game:HttpGet('https://raw.githubusercontent.com/mvqna/another-hub/refs/heads/main/main/loader.lua'))()
 end
-</pre></body></html>
