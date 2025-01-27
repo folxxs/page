@@ -10,8 +10,8 @@ local supportedExecutors = { AWP = true, Wave = true, Nihon = true, ["Synapse Z"
 -- Check if executor is supported
 if supportedExecutors[executorname] then
     NotifyLib.prompt('Executor Supported', executorname .. " is supported!", 5)
-    loadstring(game:HttpGet('https://raw.githubusercontent.com/mvqna/another-hub/refs/heads/main/main/loader.lua'))()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/folxxs/another-hub/refs/heads/main/main/loader.lua'))()
 else
     NotifyLib.prompt('Executor Not Supported', executorname .. " is not supported, expect errors.", 5)
-    loadstring(game:HttpGet('https://raw.githubusercontent.com/mvqna/another-hub/refs/heads/main/main/loader.lua'))()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/folxxs/another-hub/refs/heads/main/main/loader.lua'))()
 end
