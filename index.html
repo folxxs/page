@@ -3,11 +3,10 @@
   <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1" name="viewport">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
     <title>Another Hub</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
-    <!-- Removed particles.js script -->
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.dots.min.js"></script>
     <style>
@@ -22,7 +21,6 @@
         position: relative;
       }
 
-      /* Background element for VANTA.DOTS */
       #vanta-bg {
         position: absolute;
         top: 0;
@@ -37,19 +35,18 @@
         width: 600px;
         padding: 40px;
         background: rgba(0, 0, 0, 0.2);
-        /* Lighter background for better blur effect */
+
         border-radius: 16px;
         box-shadow: 0 4px 30px rgba(0, 0, 0, .1);
         color: #fff;
         text-align: center;
         z-index: 1;
         backdrop-filter: blur(10px);
-        /* Add blur to container itself */
+
         -webkit-backdrop-filter: blur(10px);
-        /* For Safari support */
+
       }
 
-      /* Remove the ::before pseudo-element since we're applying blur directly to container */
       .container::before {
         display: none;
       }
@@ -75,7 +72,7 @@
         color: #fff;
         border-radius: 12px;
         backdrop-filter: none;
-        /* Ensure no blur */
+
         -webkit-backdrop-filter: none;
       }
 
@@ -126,7 +123,7 @@
       }
     </style>
   </head><body>
-    <!-- VANTA background element -->
+    
     <div id="vanta-bg"></div>
     <div class="container">
       <h1>Another Hub</h1>
@@ -160,10 +157,10 @@ loadstring(game:HttpGet("https://anotherhub.agency/script/loader.lua"))()
           copyButton.textContent = "Script Copied!";
           setTimeout(() => {
             copyButton.textContent = "Copy";
-          }, 2000); // Reset button text after 2 seconds
+          }, 2000); 
         });
       }
-      // Initialize VANTA.DOTS on the new background element
+
       VANTA.DOTS({
         el: "#vanta-bg",
         mouseControls: true,
