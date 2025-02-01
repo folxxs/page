@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://anotherhub.agency/sitemap.xml
