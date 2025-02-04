@@ -5,7 +5,7 @@ local NotifyLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/vKh
 local executorname = getexecutorname() or identifyexecutor() or "Unknown Executor"
 
 -- Supported executors
-local supportedExecutors = { AWP = true, Wave = true, Nihon = true, ["Synapse Z"] = true, Swift = true }
+local supportedExecutors = { AWP = true, Wave = true, Nihon = true, ["Synapse Z"] = true, Swift = true, Delta = true }
 
 -- Check if executor is supported
 if supportedExecutors[executorname] then
