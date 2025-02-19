@@ -1,6 +1,6 @@
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 
--- Get the executor name
+-- Get the executor name.
 local executorname = getexecutorname() or identifyexecutor() or "Unknown Executor"
 
 -- Supported executors
