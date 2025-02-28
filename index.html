@@ -1,327 +1,943 @@
-<!doctype html>
-<html lang="en"><head>
-  <meta charset="UTF-8">
-  <meta content="width=device-width, initial-scale=1" name="viewport">
-  <title>Another Hub</title>
-
-  <meta name="description" content="Another Hub - Scripts for Fisch, Tower of Hell, Break In, and more! ">
-  <meta name="keywords" content="Another Hub, another hub script, op scripts for fisch, another hub script roblox, scripts, scripts for break in, tower of hell script">
-  <meta name="author" content="folxyys">
-
-  <meta property="og:title" content="Another Hub">
-  <meta property="og:description" content="Execute. Dominate. Elevate.">
-  <meta property="og:image" content="https://raw.githubusercontent.com/folxxs/page/refs/heads/main/favicon.ico">
-  <meta property="og:url" content="anotherhub.agency">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Another Hub</title>
+    <meta name="description" content="Another Hub - Scripts for Fisch, Tower of Hell, Break In, and more! ">
+    <meta name="keywords" content="Another Hub, another hub script, op scripts for fisch, another hub script roblox, scripts, scripts for break in, tower of hell script">
+    <meta name="author" content="folxyys">
   
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&amp;display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&amp;display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@1,300&amp;display=swap" rel="stylesheet">
-  
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.dots.min.js"></script>
-  <style>
-    body {
-      margin: 0;
-      overflow: hidden;
-      font-family: Poppins, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      position: relative;
-    }
+    <meta property="og:title" content="Another Hub">
+    <meta property="og:description" content="Execute. Dominate. Elevate.">
+    <meta property="og:image" content="https://raw.githubusercontent.com/folxxs/page/refs/heads/main/favicon.ico">
+    <meta property="og:url" content="anotherhub.agency">
+    
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600&family=Raleway:wght@300&family=Fira+Code&family=Poppins:wght@500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    #vanta-bg {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-    }
+        html, body {
+            overflow: hidden !important;
+            height: 100%;
+            width: 100%;
+            position: fixed;
+            -webkit-overflow-scrolling: touch;
+        }
 
-    .container {
-      position: relative;
-      width: 600px;
-      padding: 40px;
-      background: rgba(0, 0, 0, 0.2);
-      border-radius: 16px;
-      box-shadow: 0 4px 30px rgba(0, 0, 0, .1);
-      color: #fff;
-      text-align: center;
-      z-index: 1;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
+        .games-page, .modal-content, .executors-content {
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            max-height: 100vh;
+        }
 
-    .supported-games-btn {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      padding: 12px 24px;
-      background: rgba(255, 255, 255, 0.1);
-      border: none;
-      border-radius: 25px;
-      color: white;
-      font-family: 'Raleway', sans-serif;
-      font-weight: 300;
-      font-style: italic;
-      font-size: 16px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      z-index: 100;
-    }
+        .games-page::-webkit-scrollbar,
+        .modal-content::-webkit-scrollbar,
+        .executors-content::-webkit-scrollbar {
+            display: none;
+        }
 
-    .supported-games-btn:hover {
-      background: rgba(255, 255, 255, 0.2);
-      transform: scale(1.05);
-    }
+        .games-page,
+        .modal-content,
+        .executors-content {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
 
-    .games-modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.8);
-      backdrop-filter: blur(8px);
-      z-index: 1000;
-    }
+        body {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+            background-color: #1a1f25;
+            color: #e0e5eb;
+            font-family: 'Raleway', sans-serif;
+            overflow-x: hidden;
+        }
+        /* Hide scrollbars but keep functionality */
+        body::-webkit-scrollbar {
+            display: none;
+        }
 
-    .games-content {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 80%;
-      max-width: 600px;
-      padding: 40px;
-      background: rgba(20, 20, 30, 0.9);
-      border-radius: 16px;
-      color: white;
-    }
+        .page {
+            width: 100%;
+            height: 100vh;
+            position: absolute;
+            transition: transform 0.8s cubic-bezier(0.4, 0.0, 0.2, 1);
+        }
 
-    .game-item {
-      margin: 15px 0;
-      padding: 15px;
-      border-radius: 12px;
-      font-family: 'Poppins', sans-serif;
-      transition: transform 0.2s ease;
-    }
+        .home-page {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1;
+        }
 
-    .game-item:hover {
-      transform: translateX(10px);
-    }
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px;
+            display: flex;
+            justify-content: flex-end;
+            z-index: 10;
+            pointer-events: none; /* This makes the header container not block clicks */
+        }
 
-    .game-active {
-      background: rgba(39, 174, 96, 0.2);
-    }
+        .discord-btn {
+            pointer-events: auto; /* This allows the Discord button to receive clicks */
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
 
-    .game-patched {
-      background: rgba(231, 76, 60, 0.2);
-    }
+        .discord-btn:hover {
+            transform: scale(1.1);
+        }
 
-    .close-modal {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      font-size: 24px;
-      color: white;
-      cursor: pointer;
-      width: 30px;
-      height: 30px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 50%;
-      transition: all 0.3s ease;
-    }
+        .discord-icon {
+            width: 36px;
+            height: 36px;
+            fill: #5865F2;
+            transition: fill 0.3s ease;
+        }
 
-    .close-modal:hover {
-      background: rgba(255, 255, 255, 0.2);
-      transform: rotate(90deg);
-    }
+        .discord-btn:hover .discord-icon {
+            fill: #7289da;
+        }
 
-    /* Rest of your existing styles */
-    .container::before {
-      display: none;
-    }
+        .site-title {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 4rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #4b6cb7, #182848);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: transform 0.5s ease;
+        }
 
-    .container h1 {
-      font-family: Montserrat, sans-serif;
-      font-size: 36px;
-      margin-bottom: 16px;
-    }
+        .site-subtitle {
+            font-family: 'Raleway', sans-serif;
+            font-weight: 300;
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            color: #a0aec0;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 1s ease 0.3s forwards;
+        }
 
-    .container p {
-      font-family: Poppins, sans-serif;
-      font-weight: 200;
-      margin-bottom: 24px;
-      font-size: 18px;
-    }
+        .glow-btn {
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            background: linear-gradient(45deg, #3a7bd5, #00d2ff);
+            border: none;
+            border-radius: 30px;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(58, 123, 213, 0.5);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 1s ease 0.6s forwards;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
 
-    .container d {
-      font-family: Poppins, sans-serif;
-      font-weight: 200;
-      margin-bottom: 24px;
-      font-size: 13px;
-    }
+        .glow-btn:hover {
+            box-shadow: 0 0 25px rgba(58, 123, 213, 0.8);
+            transform: scale(1.05);
+        }
 
-    .highlight {
-      position: relative;
-      overflow: auto;
-      padding: 16px;
-      background: rgba(40, 40, 40, .9);
-      color: #fff;
-      border-radius: 12px;
-      backdrop-filter: none;
-      -webkit-backdrop-filter: none;
-    }
+        .games-page {
+            transform: translateX(100%);
+            padding: 80px 20px;
+            background-color: #1e242c;
+        }
 
-    .highlight pre {
-      margin: 0;
-      white-space: pre-wrap;
-      word-wrap: break-word;
-    }
+        .games-header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
 
-    #copyButton {
-      position: absolute;
-      top: 8px;
-      right: 8px;
-      cursor: pointer;
-      font-size: 14px;
-      padding: 6px 12px;
-      border: none;
-      background-color: #444;
-      color: #fff;
-      border-radius: 4px;
-      transition: background-color .2s;
-    }
+        .games-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            color: #cbd5e0;
+        }
 
-    #copyButton:hover {
-      background-color: #666;
-    }
+        .executors-btn {
+            position: absolute;
+            right: 20px;
+            padding: 10px 20px;
+            background: linear-gradient(45deg, #3a7bd5, #00d2ff);
+            border: none;
+            border-radius: 20px;
+            color: white;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            font-size: 0.9rem;
+            box-shadow: 0 0 15px rgba(58, 123, 213, 0.5);
+            transition: all 0.3s ease;
+        }
 
-    .icons {
-      display: flex;
-      justify-content: center;
-      margin-top: 24px;
-    }
+        .executors-btn:hover {
+            box-shadow: 0 0 25px rgba(58, 123, 213, 0.8);
+            transform: scale(1.05);
+        }
 
-    .icons a {
-      margin: 0 12px;
-      color: #fff;
-      font-size: 24px;
-      transition: color .2s;
-    }
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-    .icons a:hover {
-      color: #63b3ed;
-    }
+        .game-card {
+            background-color: #2d3748;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transform: translateY(30px);
+            position: relative;
+        }
 
-    .icons a svg {
-      width: 32px;
-      height: 32px;
-    }
-  </style>
+        .game-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        .game-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .game-info {
+            padding: 20px;
+        }
+
+        .game-name {
+            font-size: 1.25rem;
+            margin-bottom: 5px;
+            color: #e2e8f0;
+        }
+
+        .game-status {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            margin-bottom: 15px;
+        }
+
+        .status-operational {
+            background-color: #2f855a;
+            color: #e6fffa;
+        }
+
+        .status-patched {
+            background-color: #c53030;
+            color: #fff5f5;
+        }
+
+        .copy-btn {
+            display: flex;
+            align-items: center;
+            background-color: #1a202c;
+            border: 1px solid #4a5568;
+            border-radius: 6px;
+            padding: 10px;
+            width: 100%;
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .copy-text {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.8rem;
+            color: #a0aec0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 85%;
+        }
+
+        .copy-icon {
+            position: absolute;
+            right: 10px;
+            width: 20px;
+            height: 20px;
+            fill: #a0aec0;
+            transition: fill 0.3s ease;
+        }
+
+        .copy-btn:hover .copy-icon {
+            fill: #3a7bd5;
+        }
+
+        .copy-tooltip {
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #4a5568;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .copy-tooltip.show {
+            opacity: 1;
+        }
+
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: linear-gradient(45deg, #3a7bd5, #00d2ff);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer !important;
+            z-index: 1000;
+            box-shadow: 0 0 15px rgba(58, 123, 213, 0.5);
+            opacity: 0;
+            transition: all 0.3s ease;
+            transform: scale(0);
+            pointer-events: auto !important;
+        }
+
+        .back-btn.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .back-btn:hover {
+            box-shadow: 0 0 25px rgba(58, 123, 213, 0.8);
+            transform: scale(1.1);
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            padding: 10px 0;
+            text-align: center;
+            background-color: rgba(26, 31, 37, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 100;
+        }
+
+        .copyright {
+            font-size: 0.7rem;
+            color: #a0aec0;
+            margin-bottom: 5px;
+        }
+
+        .terms-link {
+            font-size: 0.8rem;
+            color: #3a7bd5;
+            cursor: pointer;
+            text-decoration: underline;
+            transition: color 0.3s ease;
+        }
+
+        .terms-link:hover {
+            color: #00d2ff;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1001;
+            overflow-y: auto;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .modal.show {
+            opacity: 1;
+        }
+
+        .modal-content {
+            background-color: #2d3748;
+            margin: 5% auto;
+            padding: 30px;
+            width: 80%;
+            max-width: 800px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            position: relative;
+            max-height: 80vh;
+            overflow-y: auto;
+            transform: translateY(-30px);
+            opacity: 0;
+            transition: transform 0.4s ease, opacity 0.4s ease;
+        }
+
+        .modal.show .modal-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 28px;
+            color: #a0aec0;
+            cursor: pointer;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .close-modal:hover {
+            color: #3a7bd5;
+            transform: rotate(90deg);
+        }
+
+        .modal-title {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #e2e8f0;
+        }
+
+        .modal-text {
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #cbd5e0;
+        }
+
+        .modal-text p {
+            margin-bottom: 15px;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .modal.show .modal-text p {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .modal-text ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .modal-text li {
+            margin-bottom: 10px;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .modal.show .modal-text li {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .executors-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1001;
+            overflow-y: auto;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .executors-modal.show {
+            opacity: 1;
+        }
+
+        .executors-content {
+            background-color: #2d3748;
+            margin: 15% auto;
+            padding: 30px;
+            width: 80%;
+            max-width: 500px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            position: relative;
+            transform: translateY(-30px);
+            opacity: 0;
+            transition: transform 0.4s ease, opacity 0.4s ease;
+        }
+
+        .executors-modal.show .executors-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .close-executors {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 28px;
+            color: #a0aec0;
+            cursor: pointer;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .close-executors:hover {
+            color: #3a7bd5;
+            transform: rotate(90deg);
+        }
+
+        .executors-title {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #e2e8f0;
+        }
+
+        .executors-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .executor-pill {
+            background: linear-gradient(45deg, #3a7bd5, #00d2ff);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.3s ease;
+            box-shadow: 0 0 10px rgba(58, 123, 213, 0.3);
+        }
+
+        .executors-modal.show .executor-pill {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .executor-pill:hover {
+            box-shadow: 0 0 15px rgba(58, 123, 213, 0.8);
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes cardFadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
 </head>
 <body>
-  <button class="supported-games-btn" onclick="openGamesModal()">Supported Games</button>
-  
-  <div class="games-modal" id="gamesModal" style="display: none;">
-    <div class="games-content">
-      <div class="close-modal" onclick="closeGamesModal()">×</div>
-      <h2 style="font-family: Montserrat, sans-serif; margin-bottom: 30px;">Supported Games</h2>
-      <div class="game-item game-active">Fisch</div>
-      <div class="game-item game-active">Murder Mystery 2</div>
-      <div class="game-item game-active">Break In</div>
-      <div class="game-item game-active">Tower Of Hell</div>
+    <div class="header">
+        <a href="https://discord.gg/jGs5FUNWb4" target="_blank" class="discord-btn">
+            <svg class="discord-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.14 96.36">
+                <path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/>
+            </svg>
+        </a>
     </div>
-  </div>
 
-  <div id="vanta-bg"><canvas class="vanta-canvas" width="1087" height="919" style="display: block; position: absolute; z-index: 0; top: 0px; left: 0px; width: 1087px; height: 919px;"></canvas></div>
-  <div class="container">
-    <h1>Another Hub</h1>
-    <p>Execute. Dominate. Elevate.</p>
-    <div class="relative">
-      <div class="text-white bg-gray-800 highlight highlight-source-lua notranslate overflow-auto p-4 position-relative rounded-lg">
-        <pre id="scriptText">loadstring(game:HttpGet("https://anotherhub.agency/script/loader.lua"))()</pre>
-        <button class="text-white absolute bg-gray-700 hover:bg-gray-600 p-2 right-2 rounded-md top-2 transition" id="copyButton" onclick="copyScript()">Copy</button>
-      </div>
+    <div class="page home-page" id="homePage">
+        <h1 class="site-title">Another Hub</h1>
+        <p class="site-subtitle">Execute, Dominate, Elevate</p>
+        <button class="glow-btn" id="getScriptBtn">Get Script</button>
     </div>
-    <div class="icons">
-      <a href="https://discord.gg/jGs5FUNWb4" target="_blank">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-discord" viewBox="0 0 16 16">
-          <path d="M13.545 2.907a13.2 13.2 0 0 0-3.257-1.011.05.05 0 0 0-.052.025c-.141.25-.297.577-.406.833a12.2 12.2 0 0 0-3.658 0 8 8 0 0 0-.412-.833.05.05 0 0 0-.052-.025c-1.125.194-2.22.534-3.257 1.011a.04.04 0 0 0-.021.018C.356 6.024-.213 9.047.066 12.032q.003.022.021.037a13.3 13.3 0 0 0 3.995 2.02.05.05 0 0 0 .056-.019q.463-.63.818-1.329a.05.05 0 0 0-.01-.059l-.018-.011a9 9 0 0 1-1.248-.595.05.05 0 0 1-.02-.066l.015-.019q.127-.095.248-.195a.05.05 0 0 1 .051-.007c2.619 1.196 5.454 1.196 8.041 0a.05.05 0 0 1 .053.007q.121.1.248.195a.05.05 0 0 1-.004.085 8 8 0 0 1-1.249.594.05.05 0 0 0-.03.03.05.05 0 0 0 .003.041c.24.465.515.909.817 1.329a.05.05 0 0 0 .056.019 13.2 13.2 0 0 0 4.001-2.02.05.05 0 0 0 .021-.037c.334-3.451-.559-6.449-2.366-9.106a.03.03 0 0 0-.02-.019m-8.198 7.307c-.789 0-1.438-.724-1.438-1.612s.637-1.613 1.438-1.613c.807 0 1.45.73 1.438 1.613 0 .888-.637 1.612-1.438 1.612m5.316 0c-.788 0-1.438-.724-1.438-1.612s.637-1.613 1.438-1.613c.807 0 1.451.73 1.438 1.613 0 .888-.631 1.612-1.438 1.612"></path>
-        </svg>
-      </a>
-      <a href="https://github.com/folxxs/another-hub" target="_blank">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
-          <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"></path>
-        </svg>
-      </a>
+
+    <div class="page games-page" id="gamesPage">
+        <button class="back-btn" id="backBtn">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19 12H5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 19L5 12L12 5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+
+        <div class="games-header">
+            <h2 class="games-title">Supported Games</h2>
+            <button class="executors-btn" id="executorsBtn">Supported Executors</button>
+        </div>
+
+        <div class="games-grid" id="gamesGrid">
+            <div class="game-card">
+                <img class="game-img" src="images/fisch.jpg" alt="Fisch">
+                <div class="game-info">
+                    <h3 class="game-name">Fisch</h3>
+                    <div class="game-status status-operational">Operational</div>
+                    <div class="copy-btn" onclick="copyScript(this)">
+                        <span class="copy-text">loadstring(game:HttpGet("https://anotherhub.agency/script/loader.lua"))()</span>
+                        <svg class="copy-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16 1H4C2.9 1 2 1.9 2 3V17H4V3H16V1ZM19 5H8C6.9 5 6 5.9 6 7V21C6 22.1 6.9 23 8 23H19C20.1 23 21 22.1 21 21V7C21 5.9 20.1 5 19 5ZM19 21H8V7H19V21Z"/>
+                        </svg>
+                        <span class="copy-tooltip">Copied!</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-card">
+                <img class="game-img" src="images/mm2.jpeg" alt="Murder Mystery 2">
+                <div class="game-info">
+                    <h3 class="game-name">Murder Mystery 2</h3>
+                    <div class="game-status status-operational">Operational</div>
+                    <div class="copy-btn" onclick="copyScript(this)">
+                        <span class="copy-text">loadstring(game:HttpGet("https://anotherhub.agency/script/loader.lua"))()</span>
+                        <svg class="copy-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16 1H4C2.9 1 2 1.9 2 3V17H4V3H16V1ZM19 5H8C6.9 5 6 5.9 6 7V21C6 22.1 6.9 23 8 23H19C20.1 23 21 22.1 21 21V7C21 5.9 20.1 5 19 5ZM19 21H8V7H19V21Z"/>
+                        </svg>
+                        <span class="copy-tooltip">Copied!</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-card">
+                <img class="game-img" src="images/toh.jpg" alt="Tower Of Hell">
+                <div class="game-info">
+                    <h3 class="game-name">Tower Of Hell</h3>
+                    <div class="game-status status-operational">Operational</div>
+                    <div class="copy-btn" onclick="copyScript(this)">
+                        <span class="copy-text">loadstring(game:HttpGet("https://anotherhub.agency/script/loader.lua"))()</span>
+                        <svg class="copy-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16 1H4C2.9 1 2 1.9 2 3V17H4V3H16V1ZM19 5H8C6.9 5 6 5.9 6 7V21C6 22.1 6.9 23 8 23H19C20.1 23 21 22.1 21 21V7C21 5.9 20.1 5 19 5ZM19 21H8V7H19V21Z"/>
+                        </svg>
+                        <span class="copy-tooltip">Copied!</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-card">
+                <img class="game-img" src="images/breakin.jpg" alt="Break In">
+                <div class="game-info">
+                    <h3 class="game-name">Break In</h3>
+                    <div class="game-status status-operational">Operational</div>
+                    <div class="copy-btn" onclick="copyScript(this)">
+                        <span class="copy-text">loadstring(game:HttpGet("https://anotherhub.agency/script/loader.lua"))()</span>
+                        <svg class="copy-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16 1H4C2.9 1 2 1.9 2 3V17H4V3H16V1ZM19 5H8C6.9 5 6 5.9 6 7V21C6 22.1 6.9 23 8 23H19C20.1 23 21 22.1 21 21V7C21 5.9 20.1 5 19 5ZM19 21H8V7H19V21Z"/>
+                        </svg>
+                        <span class="copy-tooltip">Copied!</span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-<d>made by folxxs</d>
-  </div>
-  <script>
-    function copyScript() {
-      const scriptText = document.getElementById("scriptText").innerText;
-      navigator.clipboard.writeText(scriptText).then(() => {
-        const copyButton = document.getElementById("copyButton");
-        copyButton.textContent = "Script Copied!";
-        setTimeout(() => {
-          copyButton.textContent = "Copy";
-        }, 2000); 
-      });
-    }
 
-    function openGamesModal() {
-      document.getElementById('gamesModal').style.display = 'block';
-    }
+    <div class="footer">
+        <div class="copyright">© 2025 Folxxys. All rights reserved.</div>
+        <div class="terms-link" id="termsLink">Terms Of Service</div>
+    </div>
 
-    function closeGamesModal() {
-      document.getElementById('gamesModal').style.display = 'none';
-    }
+    <div class="modal" id="termsModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeModal">&times;</span>
+            <h2 class="modal-title">Terms Of Service</h2>
+            <div class="modal-text">
+                <p>All rights reserved. You may not modify, distribute, or use this code without permission from the author</p>
+                <p>Copyright © 2025 folxxs. All Rights Reserved.</p>
+                <p>This repository and its contents, including the source code, scripts, assets, and other materials (collectively referred to as "the Project"), are the exclusive property of folxxs and are protected by applicable copyright laws.</p>
+                <p>By using, downloading, or interacting with this repository, you agree to the following terms:</p>
+                <ol>
+                    <li><strong>Usage Restrictions</strong><br>
+                    You are not authorized to modify, distribute, sublicense, or sell the Project or any of its components. This includes, but is not limited to, copying, modifying, adapting, translating, or creating derivative works based on the Project.</li>
+                    <li><strong>No Reverse Engineering</strong><br>
+                    Reverse engineering, decompiling, or disassembling any part of this Project is strictly prohibited. You may not attempt to bypass, disable, or circumvent any security measures or protections placed on the Project.</li>
+                    <li><strong>No Redistribution</strong><br>
+                    You are not allowed to redistribute the Project, in whole or in part, under any circumstances. This includes hosting, sharing, or making the Project available for public download.</li>
+                    <li><strong>Limited License</strong><br>
+                    You are granted a non-transferable, non-exclusive license to use the Project for personal, non-commercial purposes only, in compliance with this agreement. Any other use requires explicit, written permission from folxxs.</li>
+                    <li><strong>Ownership and Intellectual Property</strong><br>
+                    All rights, title, and interest in the Project, including all intellectual property rights, remain with folxxs. No rights are granted to you beyond those explicitly stated in this license agreement.</li>
+                    <li><strong>Termination</strong><br>
+                    folxxs reserves the right to terminate your access to the Project at any time, for any reason, including if you breach any of the terms of this license agreement. Upon termination, you must immediately cease using and destroy any copies of the Project.</li>
+                    <li><strong>No Warranty</strong><br>
+                    The Project is provided "as is" without warranty of any kind, either express or implied, including but not limited to the implied warranties of merchantability or fitness for a particular purpose. folxxs does not guarantee that the Project will be error-free or uninterrupted.</li>
+                </ol>
+                <p>By using this Project, you acknowledge that you have read and understood the terms of this license agreement, and you agree to be bound by its terms and conditions.</p>
+            </div>
+        </div>
+    </div>
 
-    VANTA.DOTS({
-      el: "#vanta-bg",
-      mouseControls: true,
-      touchControls: true,
-      gyroControls: true,
-      minHeight: 200.00,
-      minWidth: 200.00,
-      scale: 1.00,
-      scaleMobile: 1.00,
-      color: 0xd24848,
-      color2: 0xffffff,
-      backgroundColor: 0x151520,
-      spacing: 18.00,
-      showLines: false
-    });
-    console.log("Another Hub Website 0.0.3");
+    <div class="executors-modal" id="executorsModal">
+        <div class="executors-content">
+            <span class="close-executors" id="closeExecutors">&times;</span>
+            <h2 class="executors-title">Supported Executors</h2>
+            <div class="executors-list">
+                <div class="executor-pill">AWP</div>
+                <div class="executor-pill">Wave</div>
+                <div class="executor-pill">Nihon</div>
+                <div class="executor-pill">Seliware</div>
+                <div class="executor-pill">Swift</div>
+                <div class="executor-pill">CodeX</div>
+                <div class="executor-pill">Velocity/Sonar</div>
+                <div class="executor-pill">Delta</div>
+            </div>
+        </div>
+    </div>
 
-    window.onclick = function(event) {
-      const modal = document.getElementById('gamesModal');
-      if (event.target === modal) {
-        closeGamesModal();
-      }
-    }
+    <script>
+        const homePage = document.getElementById('homePage');
+        const gamesPage = document.getElementById('gamesPage');
+        const getScriptBtn = document.getElementById('getScriptBtn');
+        const backBtn = document.getElementById('backBtn');
 
-    document.addEventListener('keydown', function(event) {
-      if (event.key === 'Escape') {
-        closeGamesModal();
-      }
-    });
+        const termsLink = document.getElementById('termsLink');
+        const termsModal = document.getElementById('termsModal');
+        const closeModal = document.getElementById('closeModal');
 
-    document.getElementById('gamesModal').addEventListener('scroll', function(e) {
-      if (this.style.display === 'block') {
-        e.preventDefault();
-        e.stopPropagation();
-      }
-    });
-  </script>
+        const executorsBtn = document.getElementById('executorsBtn');
+        const executorsModal = document.getElementById('executorsModal');
+        const closeExecutors = document.getElementById('closeExecutors');
 
-</body></html>
+        // Terms modal animation and functionality
+        termsLink.addEventListener('click', function() {
+            termsModal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            
+            // Add animation classes with slight delay for better effect
+            setTimeout(() => {
+                termsModal.classList.add('show');
+                
+                // Add staggered animation to paragraphs and list items
+                const paragraphs = document.querySelectorAll('.modal-text p');
+                paragraphs.forEach((p, index) => {
+                    setTimeout(() => {
+                        p.style.transitionDelay = `${index * 0.1}s`;
+                    }, 50);
+                });
+                
+                const listItems = document.querySelectorAll('.modal-text li');
+                listItems.forEach((li, index) => {
+                    setTimeout(() => {
+                        li.style.transitionDelay = `${(paragraphs.length * 0.1) + (index * 0.1)}s`;
+                    }, 50);
+                });
+            }, 100);
+        });
+
+        closeModal.addEventListener('click', function() {
+            termsModal.classList.remove('show');
+            
+            // Reset transition delays
+            const paragraphs = document.querySelectorAll('.modal-text p');
+            paragraphs.forEach(p => {
+                p.style.transitionDelay = '0s';
+            });
+            
+            const listItems = document.querySelectorAll('.modal-text li');
+            listItems.forEach(li => {
+                li.style.transitionDelay = '0s';
+            });
+            
+            // Hide modal after animation completes
+            setTimeout(() => {
+                termsModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                // Force scrollbar to stay hidden
+                document.body.style.overflowY = 'hidden';
+            }, 400);
+        });
+
+        // Executors modal functionality
+        executorsBtn.addEventListener('click', function() {
+            executorsModal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            
+            setTimeout(() => {
+                executorsModal.classList.add('show');
+                
+                // Add staggered animation to executor pills
+                const pills = document.querySelectorAll('.executor-pill');
+                pills.forEach((pill, index) => {
+                    pill.style.transitionDelay = `${index * 0.1}s`;
+                });
+            }, 100);
+        });
+
+        closeExecutors.addEventListener('click', function() {
+            executorsModal.classList.remove('show');
+            
+            // Reset transition delays
+            const pills = document.querySelectorAll('.executor-pill');
+            pills.forEach(pill => {
+                pill.style.transitionDelay = '0s';
+            });
+            
+            // Hide modal after animation completes
+            setTimeout(() => {
+                executorsModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }, 400);
+        });
+
+        // Navigation between pages
+        getScriptBtn.addEventListener('click', function() {
+            homePage.style.transform = 'translateX(-100%)';
+            gamesPage.style.transform = 'translateX(0)';
+            backBtn.classList.add('visible');
+            
+            // Animate the game cards in sequence
+            const gameCards = document.querySelectorAll('.game-card');
+            gameCards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.animation = `cardFadeIn 0.5s ease ${index * 0.1}s forwards`;
+                }, 300);
+            });
+        });
+
+        backBtn.addEventListener('click', function() {
+            // Animate cards disappearing with a nice fade out
+            const gameCards = document.querySelectorAll('.game-card');
+            gameCards.forEach((card, index) => {
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                card.style.transitionDelay = `${index * 0.05}s`;
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+            });
+            
+            // Slight delay before page transition to allow cards to start fading
+            setTimeout(() => {
+                // Make page transition slower and smoother
+                homePage.style.transition = 'transform 0.8s cubic-bezier(0.4, 0.0, 0.2, 1)';
+                gamesPage.style.transition = 'transform 0.8s cubic-bezier(0.4, 0.0, 0.2, 1)';
+                
+                homePage.style.transform = 'translateX(0)';
+                gamesPage.style.transform = 'translateX(100%)';
+                backBtn.classList.remove('visible');
+            }, 200);
+            
+            // Reset card transitions after animation completes
+            setTimeout(() => {
+                gameCards.forEach(card => {
+                    card.style.transition = '';
+                    card.style.transitionDelay = '';
+                });
+            }, 1000);
+        });
+        // Copy script functionality
+        function copyScript(element) {
+            const textElement = element.querySelector('.copy-text');
+            const tooltipElement = element.querySelector('.copy-tooltip');
+            const originalText = textElement.textContent;
+            
+            // Create temporary element to copy from
+            const temp = document.createElement('textarea');
+            temp.value = originalText;
+            document.body.appendChild(temp);
+            
+            // Select and copy
+            temp.select();
+            document.execCommand('copy');
+            document.body.removeChild(temp);
+            
+            // Change text to "Copied!"
+            textElement.textContent = "Copied!";
+            
+            // Restore original text after 2 seconds
+            setTimeout(() => {
+                textElement.textContent = originalText;
+            }, 2000);
+        }
+
+        // Close modals when clicking outside
+        window.addEventListener('click', function(event) {
+            if (event.target === termsModal) {
+                closeModal.click();
+            }
+            if (event.target === executorsModal) {
+                closeExecutors.click();
+            }
+        });
+
+        // Add more game cards dynamically (for example)
+        document.addEventListener('DOMContentLoaded', function() {
+            // Example of how to add more game cards programmatically if needed
+            const addMoreGames = function() {
+                const games = [
+                    {
+                        name: "Adopt Me",
+                        status: "operational",
+                        image: "images/adoptme.jpg"
+                    },
+                    {
+                        name: "Blox Fruits",
+                        status: "operational",
+                        image: "images/bloxfruits.jpg"
+                    },
+                    // Add more games as needed
+                ];
+                
+                const gamesGrid = document.getElementById('gamesGrid');
+                
+                games.forEach(game => {
+                    const card = document.createElement('div');
+                    card.className = 'game-card';
+                    
+                    card.innerHTML = `
+                        <img class="game-img" src="${game.image}" alt="${game.name}">
+                        <div class="game-info">
+                            <h3 class="game-name">${game.name}</h3>
+                            <div class="game-status status-${game.status}">${game.status === 'operational' ? 'Operational' : 'Patched'}</div>
+                            <div class="copy-btn" onclick="copyScript(this)">
+                                <span class="copy-text">loadstring(game:HttpGet("https://anotherhub.agency/script/loader.lua"))()</span>
+                                <svg class="copy-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M16 1H4C2.9 1 2 1.9 2 3V17H4V3H16V1ZM19 5H8C6.9 5 6 5.9 6 7V21C6 22.1 6.9 23 8 23H19C20.1 23 21 22.1 21 21V7C21 5.9 20.1 5 19 5ZM19 21H8V7H19V21Z"/>
+                                </svg>
+                                <span class="copy-tooltip">Copied!</span>
+                            </div>
+                        </div>
+                    `;
+                    
+                    gamesGrid.appendChild(card);
+                });
+            };
+            
+        });
+    </script>
+</body>
+</html>
