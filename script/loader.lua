@@ -4,7 +4,7 @@ local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/
 local executorname = getexecutorname() or identifyexecutor() or "Unknown Executor"
 
 -- Supported executors
-local supportedExecutors = { AWP = true, Wave = true, Nihon = true, ["Synapse Z"] = true, Swift = true, Delta = true }
+local supportedExecutors = { AWP = true, Wave = true, Nihon = true, ["Synapse Z"] = true, Swift = true, Delta = true, Seliware = true, Sonar = true, Velocity = true, CodeX = true, Argon = true }
 
 -- Check if executor is supported
 if supportedExecutors[executorname] then
